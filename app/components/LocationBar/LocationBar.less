@@ -1,0 +1,21 @@
+.locationBar {
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0) 100%);
+
+    color: white;
+    text-align: center;
+    padding: 1.3rem 1rem 1rem 1rem;
+    font-size: 2.6rem;
+    min-height: 65px;
+
+    &__icon {
+        animation-duration: 1.5s;
+    }
+}
+
+.locationBar.locationBar--searching {
+    .locationBar {
+        &__icon {
+            font-size: 4rem;
+        }
+    }
+}

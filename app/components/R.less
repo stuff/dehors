@@ -1,0 +1,58 @@
+.R {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    min-height: 460px;
+
+    &::before {
+        transition: opacity 4s;
+        opacity: 1;
+        content: ' ';
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: radial-gradient(ellipse at 50% 50%, rgb(90,90,90) 0%,rgb(20,20,20) 100%);
+    }
+
+    &__wrapper {
+        position: relative;
+        z-index: 1;
+        height: 100%;
+    }
+
+    &__aqiChart {
+        flex-grow: 2;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    > div {
+        z-index: 1;
+    }
+
+    &__onlineStatus {
+        background: rgba(0, 0, 0, 0.5);
+        height: 2rem;
+        overflow: hidden;
+        transition: height 0.2s;
+    }
+}
+
+.R.R--hasAqi {
+    &::before {
+        opacity: 0;
+    }
+}
+
+.R.R--isOnline {
+    .R__onlineStatus {
+        height: 0;
+    }
+}

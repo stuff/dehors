@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["es2015", { "modules": false }],
+    "stage-3",
+    "react"
+  ],
+
+  "plugins": [
+    [ "transform-react-jsx", { "pragma":"h" }]
+  ]
+}
