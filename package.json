@@ -6,7 +6,7 @@
   "author": "STuFF <nchalleil@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "rm -rf ./dist/* && cp -r ./public/* ./dist && rm ./dist/index.ejs && yarn webpack -p",
+    "build": "mkdir -p ./dist && rm -rf ./dist/* && cp -r ./public/* ./dist && rm ./dist/index.ejs && yarn webpack -p",
     "deploy": "shipit production deploy"
   },
   "devDependencies": {
