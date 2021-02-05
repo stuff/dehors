@@ -13,5 +13,3 @@ animateTween();
 installServiceWorker();
 
 render(<App />, document.getElementById('app'));
-
-console.log('ok');
