@@ -14,7 +14,7 @@ export function getBackgroundFromAqi(aqi) {
 }
 
 export function getAqiSentence(value) {
-  const val = AQI.filter(aqiConf => {
+  const val = AQI.filter((aqiConf) => {
     return value >= aqiConf.min && value <= aqiConf.max;
   });
 
@@ -22,7 +22,7 @@ export function getAqiSentence(value) {
 }
 
 export function getAqiColor(value) {
-  const val = AQI.filter(aqiConf => {
+  const val = AQI.filter((aqiConf) => {
     return value >= aqiConf.min && value <= aqiConf.max;
   });
 
@@ -30,19 +30,17 @@ export function getAqiColor(value) {
 }
 
 export function getAdressFromCurrentPosition() {
-  return getPosition().then(coords => {
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${
-      coords.latitude
-    },${coords.longitude}&key=AIzaSyAoppe4QSTNKCYa6tKQYtyo9apODIlg4is`;
+  return getPosition().then((coords) => {
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${coords.latitude},${coords.longitude}&key=AIzaSyAoppe4QSTNKCYa6tKQYtyo9apODIlg4is`;
     return fetch(url)
-      .then(response => response.json())
-      .then(data => {
+      .then((response) => response.json())
+      .then((data) => {
         const result = data.results[0];
         const countryComponent = result.address_components.filter(
-          address_component => address_component.types.includes('country')
+          (address_component) => address_component.types.includes('country')
         );
         const localityComponent = result.address_components.filter(
-          address_component => address_component.types.includes('locality')
+          (address_component) => address_component.types.includes('locality')
         );
 
         return (
@@ -53,32 +51,30 @@ export function getAdressFromCurrentPosition() {
 }
 
 export function getAirQualityFromCurrentPosition() {
-  return getPosition().then(coords => {
-    const query = `https://api.waqi.info/feed/geo:${coords.latitude};${
-      coords.longitude
-    }/?token=${WAQI_TOKEN}`;
+  return getPosition().then((coords) => {
+    const query = `https://api.waqi.info/feed/geo:${coords.latitude};${coords.longitude}/?token=${WAQI_TOKEN}`;
     return fetch(query)
-      .then(response => response.json())
-      .then(json => json.data);
+      .then((response) => response.json())
+      .then((json) => json.data);
   });
 }
 
 export function getPosition() {
   const STORAGE_KEY = 'last_position';
 
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     if (!navigator.onLine) {
       localforage
         .getItem(STORAGE_KEY)
-        .then(coords => {
+        .then((coords) => {
           resolve(coords);
         })
-        .catch(error => {
+        .catch((error) => {
           console.log(error);
         });
     } else {
       navigator.geolocation.getCurrentPosition(
-        position => {
+        (position) => {
           const coords = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
@@ -88,7 +84,7 @@ export function getPosition() {
             resolve(coords);
           });
         },
-        error => {
+        (error) => {
           console.log(error);
         }
       );

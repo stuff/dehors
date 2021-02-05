@@ -52,7 +52,7 @@ module.exports = {
     }),
 
     new webpack.DefinePlugin({
-      __CONFIG__: config,
+      __CONFIG__: JSON.stringify(config),
     }),
   ],
 
